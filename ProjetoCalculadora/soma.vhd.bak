@@ -1,0 +1,19 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity somador is 
+port 
+( 
+
+	Ci, A, B : in std_logic;
+	Co, S: out std_logic
+
+);
+end somador;
+
+architecture archSomador of somador is
+begin 
+	S <= Ci xor (A xor B);
+	Co <= (not(Ci) and (A and B)) or (Ci and (A or B));
+	
+end archSomador;

@@ -1,0 +1,233 @@
+m255
+K3
+13
+cModel Technology
+Z0 dC:\altera\13.0\Projeto 1\simulation\qsim
+vmaior
+Z1 I2kDazej]QUbH2eh5jPoY21
+Z2 VR[?YcR`Z`31lGz8D=OFVU2
+Z3 dC:\altera\13.0\Projeto 1\simulation\qsim
+Z4 w1555356860
+Z5 8calculadoraVHDL.vo
+Z6 FcalculadoraVHDL.vo
+L0 31
+Z7 OV;L;10.1d;51
+r1
+31
+Z8 !s90 -work|work|calculadoraVHDL.vo|
+Z9 o-work work -O0
+Z10 !s100 TQG9ANz2[M3zcU?ihJJnK0
+Z11 !s108 1555356862.597000
+Z12 !s107 calculadoraVHDL.vo|
+!i10b 1
+!s85 0
+!s101 -O0
+vmaior_vlg_check_tst
+Z13 ILJZWC1>=Q@Tf6iGA];7?g3
+Z14 VMMC?2T?7^VXSMbL7WV9^n1
+R3
+Z15 w1555356858
+Z16 8calculadoraVHDL.vt
+Z17 FcalculadoraVHDL.vt
+L0 59
+R7
+r1
+31
+Z18 !s108 1555356862.824000
+Z19 !s107 calculadoraVHDL.vt|
+Z20 !s90 -work|work|calculadoraVHDL.vt|
+R9
+Z21 !s100 >HE2K9^N><l0Kc11M:c3^2
+!i10b 1
+!s85 0
+!s101 -O0
+vmaior_vlg_sample_tst
+Z22 IbIV9b[_Mo?YS7jYblF8>g0
+Z23 V5659ZVe@UHHfWdT:LK]a82
+R3
+R15
+R16
+R17
+L0 29
+R7
+r1
+31
+R18
+R19
+R20
+R9
+Z24 !s100 gFTPehVa?Bk;lW5B1adN20
+!i10b 1
+!s85 0
+!s101 -O0
+vmaior_vlg_vec_tst
+Z25 InPWigX1gLMPlhEW01Qge40
+Z26 VZ^YGboKnH`XKFk=iazMn12
+R3
+R15
+R16
+R17
+Z27 L0 154
+R7
+r1
+31
+R18
+R19
+R20
+R9
+Z28 !s100 QIgSR`J4hVW:1_mG:L4d`0
+!i10b 1
+!s85 0
+!s101 -O0
+vsoma
+Z29 IoSS8>IEMn51^;d8Ni8==73
+Z30 VY@mPCGJoFE5<T4CQ<b6A;3
+R3
+Z31 w1555354344
+R5
+R6
+L0 31
+R7
+r1
+31
+R8
+R9
+Z32 !s100 kEdclXXdRoX4`D9VWccZU3
+Z33 !s108 1555354346.680000
+R12
+!i10b 1
+!s85 0
+!s101 -O0
+vsoma_vlg_check_tst
+Z34 I4I:=9O_4bYV[L8cPE>SZC0
+Z35 VbfOXS4Qg0GH]Gi=3:d6jf3
+R3
+Z36 w1555354343
+R16
+R17
+L0 61
+R7
+r1
+31
+Z37 !s108 1555354346.926000
+R19
+R20
+R9
+Z38 !s100 6eIV;RRN@<6i`M5nzO]1h2
+!i10b 1
+!s85 0
+!s101 -O0
+vsoma_vlg_sample_tst
+Z39 IF4fFCen:oh:]BDanU[cZ`2
+Z40 VP[]V^iYOiZiDm_=EQKVFG1
+R3
+R36
+R16
+R17
+L0 29
+R7
+r1
+31
+R37
+R19
+R20
+R9
+Z41 !s100 n6=9X7K9DCHeN`_YBRSEO1
+!i10b 1
+!s85 0
+!s101 -O0
+vsoma_vlg_vec_tst
+Z42 IKJaS8?3f[gSL[MMJ;k9990
+Z43 V9HH_S`:[9?;lgjFiad3E22
+R3
+R36
+R16
+R17
+Z44 L0 236
+R7
+r1
+31
+R37
+R19
+R20
+R9
+Z45 !s100 XX@`^k9F;_o91ElU:lJBZ0
+!i10b 1
+!s85 0
+!s101 -O0
+vsubtracao
+Z46 IMzl12O_SF[L=U;ZeJoPdG2
+Z47 VMk^7S9SISZcTDZSh[^D>R3
+R3
+Z48 w1555357265
+R5
+R6
+L0 31
+R7
+r1
+31
+R8
+R9
+!i10b 1
+Z49 !s100 8=:]m?ehPYD22U<^EZ]L`2
+!s85 0
+Z50 !s108 1555357267.153000
+R12
+!s101 -O0
+vsubtracao_vlg_check_tst
+!i10b 1
+!s100 R1d9z1fMS@`DkiN;UPHlP2
+IV77fNoHa7nFi`X>n=AaTT3
+VA>4LgLL2n<f@50D;]W5nf2
+R3
+Z51 w1555357263
+R16
+R17
+L0 61
+R7
+r1
+!s85 0
+31
+Z52 !s108 1555357267.414000
+Z53 !s107 calculadoraVHDL.vt|
+R20
+!s101 -O0
+R9
+vsubtracao_vlg_sample_tst
+!i10b 1
+!s100 iWQQ5o@;5z@Pe?3d`OP>11
+I4>0hN<eGM7RgIaQlRMWK73
+Vc;6U=UhE]O;9ElO_3gGmM1
+R3
+R51
+R16
+R17
+L0 29
+R7
+r1
+!s85 0
+31
+R52
+R53
+R20
+!s101 -O0
+R9
+vsubtracao_vlg_vec_tst
+!i10b 1
+!s100 K>Q6lP4Pjg`^8Lz4a2bCm3
+Ic[cU6ATDU@5eB@4zKYdG93
+V0;L]SH>jk42zLc3AaHk6H3
+R3
+R51
+R16
+R17
+R44
+R7
+r1
+!s85 0
+31
+R52
+R53
+R20
+!s101 -O0
+R9

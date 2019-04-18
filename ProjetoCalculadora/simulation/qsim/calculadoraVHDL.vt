@@ -1,0 +1,1072 @@
+// Copyright (C) 1991-2013 Altera Corporation
+// Your use of Altera Corporation's design tools, logic functions 
+// and other software and tools, and its AMPP partner logic 
+// functions, and any output files from any of the foregoing 
+// (including device programming or simulation files), and any 
+// associated documentation or information are expressly subject 
+// to the terms and conditions of the Altera Program License 
+// Subscription Agreement, Altera MegaCore Function License 
+// Agreement, or other applicable license agreement, including, 
+// without limitation, that your use is for the sole purpose of 
+// programming logic devices manufactured by Altera and sold by 
+// Altera or its authorized distributors.  Please refer to the 
+// applicable agreement for further details.
+
+// *****************************************************************************
+// This file contains a Verilog test bench with test vectors .The test vectors  
+// are exported from a vector file in the Quartus Waveform Editor and apply to  
+// the top level entity of the current Quartus project .The user can use this   
+// testbench to simulate his design using a third-party simulation tool .       
+// *****************************************************************************
+// Generated on "04/15/2019 16:41:03"
+                                                                        
+// Verilog Self-Checking Test Bench (with test vectors) for design :    subtracao
+// 
+// Simulation tool : 3rd Party
+// 
+
+`timescale 1 ps/ 1 ps
+module subtracao_vlg_sample_tst(
+	Bi,
+	x,
+	y,
+	sampler_tx
+);
+input  Bi;
+input [3:0] x;
+input [3:0] y;
+output sampler_tx;
+
+reg sample;
+time current_time;
+always @(Bi or x or y)
+                                                                                
+begin                                                 
+ if ($realtime > 0)                                   
+ begin                                                
+	if ($realtime == 0 || $realtime != current_time)  
+	begin									          
+		if (sample === 1'bx)                          
+			sample = 0;                               
+		else                                          
+			sample = ~sample;                         
+	end										          
+	current_time = $realtime;					      
+ end                                                  
+end                                                   
+
+assign sampler_tx = sample;
+endmodule
+
+module subtracao_vlg_check_tst (
+	Bo,
+	Dif,
+	sampler_rx
+);
+input  Bo;
+input [3:0] Dif;
+input sampler_rx;
+
+reg  Bo_expected;
+reg [3:0] Dif_expected;
+
+reg  Bo_prev;
+reg [3:0] Dif_prev;
+
+reg  Bo_expected_prev;
+reg [3:0] Dif_expected_prev;
+
+reg  last_Bo_exp;
+reg [3:0] last_Dif_exp;
+
+reg trigger;
+
+integer i;
+integer nummismatches;
+
+reg [1:2] on_first_change ;
+
+
+initial
+begin
+trigger = 0;
+i = 0;
+nummismatches = 0;
+on_first_change = 2'b1;
+end
+
+// update real /o prevs
+
+always @(trigger)
+begin
+	Bo_prev = Bo;
+	Dif_prev = Dif;
+end
+
+// update expected /o prevs
+
+always @(trigger)
+begin
+	Bo_expected_prev = Bo_expected;
+	Dif_expected_prev = Dif_expected;
+end
+
+
+
+// expected Bo
+initial
+begin
+	Bo_expected = 1'bX;
+end 
+// expected Dif[ 3 ]
+initial
+begin
+	Dif_expected[3] = 1'bX;
+end 
+// expected Dif[ 2 ]
+initial
+begin
+	Dif_expected[2] = 1'bX;
+end 
+// expected Dif[ 1 ]
+initial
+begin
+	Dif_expected[1] = 1'bX;
+end 
+// expected Dif[ 0 ]
+initial
+begin
+	Dif_expected[0] = 1'bX;
+end 
+// generate trigger
+always @(Bo_expected or Bo or Dif_expected or Dif)
+begin
+	trigger <= ~trigger;
+end
+
+always @(posedge sampler_rx or negedge sampler_rx)
+begin
+`ifdef debug_tbench
+	$display("Scanning pattern %d @time = %t",i,$realtime );
+	i = i + 1;
+	$display("| expected Bo = %b | expected Dif = %b | ",Bo_expected_prev,Dif_expected_prev);
+	$display("| real Bo = %b | real Dif = %b | ",Bo_prev,Dif_prev);
+`endif
+	if (
+		( Bo_expected_prev !== 1'bx ) && ( Bo_prev !== Bo_expected_prev )
+		&& ((Bo_expected_prev !== last_Bo_exp) ||
+			on_first_change[1])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port Bo :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", Bo_expected_prev);
+		$display ("     Real value = %b", Bo_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[1] = 1'b0;
+		last_Bo_exp = Bo_expected_prev;
+	end
+	if (
+		( Dif_expected_prev[0] !== 1'bx ) && ( Dif_prev[0] !== Dif_expected_prev[0] )
+		&& ((Dif_expected_prev[0] !== last_Dif_exp[0]) ||
+			on_first_change[2])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port Dif[0] :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", Dif_expected_prev);
+		$display ("     Real value = %b", Dif_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[2] = 1'b0;
+		last_Dif_exp[0] = Dif_expected_prev[0];
+	end
+	if (
+		( Dif_expected_prev[1] !== 1'bx ) && ( Dif_prev[1] !== Dif_expected_prev[1] )
+		&& ((Dif_expected_prev[1] !== last_Dif_exp[1]) ||
+			on_first_change[2])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port Dif[1] :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", Dif_expected_prev);
+		$display ("     Real value = %b", Dif_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[2] = 1'b0;
+		last_Dif_exp[1] = Dif_expected_prev[1];
+	end
+	if (
+		( Dif_expected_prev[2] !== 1'bx ) && ( Dif_prev[2] !== Dif_expected_prev[2] )
+		&& ((Dif_expected_prev[2] !== last_Dif_exp[2]) ||
+			on_first_change[2])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port Dif[2] :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", Dif_expected_prev);
+		$display ("     Real value = %b", Dif_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[2] = 1'b0;
+		last_Dif_exp[2] = Dif_expected_prev[2];
+	end
+	if (
+		( Dif_expected_prev[3] !== 1'bx ) && ( Dif_prev[3] !== Dif_expected_prev[3] )
+		&& ((Dif_expected_prev[3] !== last_Dif_exp[3]) ||
+			on_first_change[2])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port Dif[3] :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", Dif_expected_prev);
+		$display ("     Real value = %b", Dif_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[2] = 1'b0;
+		last_Dif_exp[3] = Dif_expected_prev[3];
+	end
+
+	trigger <= ~trigger;
+end
+initial 
+
+begin 
+$timeformat(-12,3," ps",6);
+#1000000;
+if (nummismatches > 0)
+	$display ("%d mismatched vectors : Simulation failed !",nummismatches);
+else
+	$display ("Simulation passed !");
+$finish;
+end 
+endmodule
+
+module subtracao_vlg_vec_tst();
+// constants                                           
+// general purpose registers
+reg Bi;
+reg [3:0] x;
+reg [3:0] y;
+// wires                                               
+wire Bo;
+wire [3:0] Dif;
+
+wire sampler;                             
+
+// assign statements (if any)                          
+subtracao i1 (
+// port map - connection between master ports and signals/registers   
+	.Bi(Bi),
+	.Bo(Bo),
+	.Dif(Dif),
+	.x(x),
+	.y(y)
+);
+
+// Bi
+initial
+begin
+	Bi = 1'b0;
+end 
+// x[ 3 ]
+initial
+begin
+	x[3] = 1'b0;
+	x[3] = #10000 1'b1;
+	x[3] = #20000 1'b0;
+	x[3] = #5000 1'b1;
+	x[3] = #5000 1'b0;
+	x[3] = #5000 1'b1;
+	x[3] = #20000 1'b0;
+	x[3] = #20000 1'b1;
+	x[3] = #5000 1'b0;
+	x[3] = #5000 1'b1;
+	x[3] = #35000 1'b0;
+	x[3] = #5000 1'b1;
+	x[3] = #10000 1'b0;
+	x[3] = #5000 1'b1;
+	x[3] = #10000 1'b0;
+	x[3] = #5000 1'b1;
+	x[3] = #30000 1'b0;
+	x[3] = #15000 1'b1;
+	x[3] = #5000 1'b0;
+	x[3] = #20000 1'b1;
+	x[3] = #5000 1'b0;
+	x[3] = #5000 1'b1;
+	x[3] = #20000 1'b0;
+	x[3] = #5000 1'b1;
+	x[3] = #5000 1'b0;
+	x[3] = #15000 1'b1;
+	x[3] = #20000 1'b0;
+	x[3] = #5000 1'b1;
+	x[3] = #10000 1'b0;
+	x[3] = #5000 1'b1;
+	x[3] = #5000 1'b0;
+	x[3] = #35000 1'b1;
+	x[3] = #10000 1'b0;
+	x[3] = #10000 1'b1;
+	x[3] = #5000 1'b0;
+	x[3] = #5000 1'b1;
+	x[3] = #15000 1'b0;
+	x[3] = #5000 1'b1;
+	x[3] = #15000 1'b0;
+	x[3] = #10000 1'b1;
+	x[3] = #5000 1'b0;
+	x[3] = #10000 1'b1;
+	x[3] = #10000 1'b0;
+	x[3] = #20000 1'b1;
+	x[3] = #15000 1'b0;
+	x[3] = #5000 1'b1;
+	x[3] = #15000 1'b0;
+	x[3] = #20000 1'b1;
+	x[3] = #5000 1'b0;
+	x[3] = #15000 1'b1;
+	x[3] = #5000 1'b0;
+	x[3] = #10000 1'b1;
+	x[3] = #15000 1'b0;
+	x[3] = #10000 1'b1;
+	x[3] = #10000 1'b0;
+	x[3] = #5000 1'b1;
+	x[3] = #15000 1'b0;
+	x[3] = #5000 1'b1;
+	x[3] = #25000 1'b0;
+	x[3] = #25000 1'b1;
+	x[3] = #10000 1'b0;
+	x[3] = #5000 1'b1;
+	x[3] = #5000 1'b0;
+	x[3] = #40000 1'b1;
+	x[3] = #5000 1'b0;
+	x[3] = #5000 1'b1;
+	x[3] = #15000 1'b0;
+	x[3] = #15000 1'b1;
+	x[3] = #5000 1'b0;
+	x[3] = #5000 1'b1;
+	x[3] = #15000 1'b0;
+	x[3] = #5000 1'b1;
+	x[3] = #20000 1'b0;
+	x[3] = #15000 1'b1;
+	x[3] = #20000 1'b0;
+	x[3] = #10000 1'b1;
+	x[3] = #15000 1'b0;
+	x[3] = #5000 1'b1;
+	x[3] = #5000 1'b0;
+	x[3] = #20000 1'b1;
+	x[3] = #15000 1'b0;
+	x[3] = #25000 1'b1;
+	x[3] = #5000 1'b0;
+	x[3] = #15000 1'b1;
+end 
+// x[ 2 ]
+initial
+begin
+	x[2] = 1'b1;
+	x[2] = #5000 1'b0;
+	x[2] = #5000 1'b1;
+	x[2] = #15000 1'b0;
+	x[2] = #5000 1'b1;
+	x[2] = #5000 1'b0;
+	x[2] = #5000 1'b1;
+	x[2] = #20000 1'b0;
+	x[2] = #5000 1'b1;
+	x[2] = #5000 1'b0;
+	x[2] = #5000 1'b1;
+	x[2] = #5000 1'b0;
+	x[2] = #5000 1'b1;
+	x[2] = #20000 1'b0;
+	x[2] = #15000 1'b1;
+	x[2] = #5000 1'b0;
+	x[2] = #5000 1'b1;
+	x[2] = #5000 1'b0;
+	x[2] = #5000 1'b1;
+	x[2] = #10000 1'b0;
+	x[2] = #15000 1'b1;
+	x[2] = #20000 1'b0;
+	x[2] = #15000 1'b1;
+	x[2] = #10000 1'b0;
+	x[2] = #15000 1'b1;
+	x[2] = #5000 1'b0;
+	x[2] = #10000 1'b1;
+	x[2] = #5000 1'b0;
+	x[2] = #15000 1'b1;
+	x[2] = #15000 1'b0;
+	x[2] = #5000 1'b1;
+	x[2] = #25000 1'b0;
+	x[2] = #5000 1'b1;
+	x[2] = #5000 1'b0;
+	x[2] = #10000 1'b1;
+	x[2] = #20000 1'b0;
+	x[2] = #10000 1'b1;
+	x[2] = #20000 1'b0;
+	x[2] = #5000 1'b1;
+	x[2] = #15000 1'b0;
+	x[2] = #10000 1'b1;
+	x[2] = #5000 1'b0;
+	x[2] = #15000 1'b1;
+	x[2] = #15000 1'b0;
+	x[2] = #20000 1'b1;
+	x[2] = #15000 1'b0;
+	x[2] = #15000 1'b1;
+	x[2] = #5000 1'b0;
+	x[2] = #10000 1'b1;
+	x[2] = #5000 1'b0;
+	x[2] = #15000 1'b1;
+	x[2] = #5000 1'b0;
+	x[2] = #5000 1'b1;
+	x[2] = #5000 1'b0;
+	x[2] = #5000 1'b1;
+	x[2] = #30000 1'b0;
+	x[2] = #5000 1'b1;
+	x[2] = #5000 1'b0;
+	x[2] = #5000 1'b1;
+	x[2] = #5000 1'b0;
+	x[2] = #5000 1'b1;
+	x[2] = #5000 1'b0;
+	x[2] = #10000 1'b1;
+	x[2] = #10000 1'b0;
+	x[2] = #15000 1'b1;
+	x[2] = #5000 1'b0;
+	x[2] = #15000 1'b1;
+	x[2] = #10000 1'b0;
+	x[2] = #5000 1'b1;
+	x[2] = #10000 1'b0;
+	x[2] = #15000 1'b1;
+	x[2] = #10000 1'b0;
+	x[2] = #5000 1'b1;
+	x[2] = #15000 1'b0;
+	x[2] = #15000 1'b1;
+	x[2] = #15000 1'b0;
+	x[2] = #10000 1'b1;
+	x[2] = #5000 1'b0;
+	x[2] = #10000 1'b1;
+	x[2] = #5000 1'b0;
+	x[2] = #10000 1'b1;
+	x[2] = #5000 1'b0;
+	x[2] = #10000 1'b1;
+	x[2] = #20000 1'b0;
+	x[2] = #5000 1'b1;
+	x[2] = #10000 1'b0;
+	x[2] = #10000 1'b1;
+	x[2] = #10000 1'b0;
+	x[2] = #15000 1'b1;
+	x[2] = #10000 1'b0;
+	x[2] = #15000 1'b1;
+	x[2] = #5000 1'b0;
+	x[2] = #15000 1'b1;
+	x[2] = #15000 1'b0;
+	x[2] = #10000 1'b1;
+	x[2] = #20000 1'b0;
+	x[2] = #5000 1'b1;
+end 
+// x[ 1 ]
+initial
+begin
+	x[1] = 1'b1;
+	x[1] = #5000 1'b0;
+	x[1] = #10000 1'b1;
+	x[1] = #5000 1'b0;
+	x[1] = #5000 1'b1;
+	x[1] = #10000 1'b0;
+	x[1] = #5000 1'b1;
+	x[1] = #5000 1'b0;
+	x[1] = #10000 1'b1;
+	x[1] = #30000 1'b0;
+	x[1] = #15000 1'b1;
+	x[1] = #25000 1'b0;
+	x[1] = #5000 1'b1;
+	x[1] = #10000 1'b0;
+	x[1] = #10000 1'b1;
+	x[1] = #5000 1'b0;
+	x[1] = #20000 1'b1;
+	x[1] = #10000 1'b0;
+	x[1] = #10000 1'b1;
+	x[1] = #30000 1'b0;
+	x[1] = #5000 1'b1;
+	x[1] = #10000 1'b0;
+	x[1] = #5000 1'b1;
+	x[1] = #5000 1'b0;
+	x[1] = #5000 1'b1;
+	x[1] = #10000 1'b0;
+	x[1] = #5000 1'b1;
+	x[1] = #5000 1'b0;
+	x[1] = #10000 1'b1;
+	x[1] = #5000 1'b0;
+	x[1] = #10000 1'b1;
+	x[1] = #15000 1'b0;
+	x[1] = #30000 1'b1;
+	x[1] = #15000 1'b0;
+	x[1] = #15000 1'b1;
+	x[1] = #10000 1'b0;
+	x[1] = #5000 1'b1;
+	x[1] = #10000 1'b0;
+	x[1] = #10000 1'b1;
+	x[1] = #5000 1'b0;
+	x[1] = #5000 1'b1;
+	x[1] = #5000 1'b0;
+	x[1] = #5000 1'b1;
+	x[1] = #10000 1'b0;
+	x[1] = #55000 1'b1;
+	x[1] = #5000 1'b0;
+	x[1] = #5000 1'b1;
+	x[1] = #5000 1'b0;
+	x[1] = #10000 1'b1;
+	x[1] = #5000 1'b0;
+	x[1] = #10000 1'b1;
+	x[1] = #5000 1'b0;
+	x[1] = #5000 1'b1;
+	x[1] = #15000 1'b0;
+	x[1] = #10000 1'b1;
+	x[1] = #10000 1'b0;
+	x[1] = #10000 1'b1;
+	x[1] = #10000 1'b0;
+	x[1] = #15000 1'b1;
+	x[1] = #5000 1'b0;
+	x[1] = #20000 1'b1;
+	x[1] = #20000 1'b0;
+	x[1] = #30000 1'b1;
+	x[1] = #10000 1'b0;
+	x[1] = #10000 1'b1;
+	x[1] = #20000 1'b0;
+	x[1] = #15000 1'b1;
+	x[1] = #10000 1'b0;
+	x[1] = #5000 1'b1;
+	x[1] = #5000 1'b0;
+	x[1] = #20000 1'b1;
+	x[1] = #5000 1'b0;
+	x[1] = #15000 1'b1;
+	x[1] = #10000 1'b0;
+	x[1] = #5000 1'b1;
+	x[1] = #10000 1'b0;
+	x[1] = #30000 1'b1;
+	x[1] = #5000 1'b0;
+	x[1] = #5000 1'b1;
+	x[1] = #15000 1'b0;
+	x[1] = #5000 1'b1;
+	x[1] = #10000 1'b0;
+	x[1] = #5000 1'b1;
+	x[1] = #10000 1'b0;
+	x[1] = #15000 1'b1;
+	x[1] = #15000 1'b0;
+	x[1] = #10000 1'b1;
+	x[1] = #5000 1'b0;
+	x[1] = #5000 1'b1;
+	x[1] = #5000 1'b0;
+	x[1] = #20000 1'b1;
+end 
+// x[ 0 ]
+initial
+begin
+	x[0] = 1'b1;
+	x[0] = #5000 1'b0;
+	x[0] = #5000 1'b1;
+	x[0] = #5000 1'b0;
+	x[0] = #25000 1'b1;
+	x[0] = #5000 1'b0;
+	x[0] = #25000 1'b1;
+	x[0] = #5000 1'b0;
+	x[0] = #10000 1'b1;
+	x[0] = #5000 1'b0;
+	x[0] = #20000 1'b1;
+	x[0] = #10000 1'b0;
+	x[0] = #10000 1'b1;
+	x[0] = #20000 1'b0;
+	x[0] = #15000 1'b1;
+	x[0] = #10000 1'b0;
+	x[0] = #5000 1'b1;
+	x[0] = #5000 1'b0;
+	x[0] = #15000 1'b1;
+	x[0] = #35000 1'b0;
+	x[0] = #5000 1'b1;
+	x[0] = #5000 1'b0;
+	x[0] = #5000 1'b1;
+	x[0] = #5000 1'b0;
+	x[0] = #10000 1'b1;
+	x[0] = #10000 1'b0;
+	x[0] = #5000 1'b1;
+	x[0] = #5000 1'b0;
+	x[0] = #15000 1'b1;
+	x[0] = #5000 1'b0;
+	x[0] = #5000 1'b1;
+	x[0] = #10000 1'b0;
+	x[0] = #20000 1'b1;
+	x[0] = #5000 1'b0;
+	x[0] = #5000 1'b1;
+	x[0] = #15000 1'b0;
+	x[0] = #10000 1'b1;
+	x[0] = #5000 1'b0;
+	x[0] = #5000 1'b1;
+	x[0] = #5000 1'b0;
+	x[0] = #15000 1'b1;
+	x[0] = #5000 1'b0;
+	x[0] = #5000 1'b1;
+	x[0] = #5000 1'b0;
+	x[0] = #15000 1'b1;
+	x[0] = #5000 1'b0;
+	x[0] = #10000 1'b1;
+	x[0] = #10000 1'b0;
+	x[0] = #40000 1'b1;
+	x[0] = #5000 1'b0;
+	x[0] = #5000 1'b1;
+	x[0] = #5000 1'b0;
+	x[0] = #10000 1'b1;
+	x[0] = #15000 1'b0;
+	x[0] = #25000 1'b1;
+	x[0] = #10000 1'b0;
+	x[0] = #30000 1'b1;
+	x[0] = #5000 1'b0;
+	x[0] = #10000 1'b1;
+	x[0] = #15000 1'b0;
+	x[0] = #5000 1'b1;
+	x[0] = #5000 1'b0;
+	x[0] = #5000 1'b1;
+	x[0] = #10000 1'b0;
+	x[0] = #20000 1'b1;
+	x[0] = #5000 1'b0;
+	x[0] = #10000 1'b1;
+	x[0] = #5000 1'b0;
+	x[0] = #5000 1'b1;
+	x[0] = #5000 1'b0;
+	x[0] = #5000 1'b1;
+	x[0] = #5000 1'b0;
+	x[0] = #5000 1'b1;
+	x[0] = #5000 1'b0;
+	x[0] = #5000 1'b1;
+	x[0] = #20000 1'b0;
+	x[0] = #5000 1'b1;
+	x[0] = #10000 1'b0;
+	x[0] = #15000 1'b1;
+	x[0] = #10000 1'b0;
+	x[0] = #5000 1'b1;
+	x[0] = #5000 1'b0;
+	x[0] = #10000 1'b1;
+	x[0] = #10000 1'b0;
+	x[0] = #10000 1'b1;
+	x[0] = #5000 1'b0;
+	x[0] = #10000 1'b1;
+	x[0] = #10000 1'b0;
+	x[0] = #5000 1'b1;
+	x[0] = #15000 1'b0;
+	x[0] = #5000 1'b1;
+	x[0] = #5000 1'b0;
+	x[0] = #10000 1'b1;
+	x[0] = #5000 1'b0;
+	x[0] = #5000 1'b1;
+	x[0] = #10000 1'b0;
+	x[0] = #10000 1'b1;
+	x[0] = #10000 1'b0;
+	x[0] = #5000 1'b1;
+	x[0] = #5000 1'b0;
+	x[0] = #5000 1'b1;
+	x[0] = #10000 1'b0;
+	x[0] = #5000 1'b1;
+	x[0] = #5000 1'b0;
+	x[0] = #5000 1'b1;
+	x[0] = #5000 1'b0;
+	x[0] = #5000 1'b1;
+end 
+// y[ 3 ]
+initial
+begin
+	y[3] = 1'b1;
+	y[3] = #5000 1'b0;
+	y[3] = #5000 1'b1;
+	y[3] = #5000 1'b0;
+	y[3] = #5000 1'b1;
+	y[3] = #15000 1'b0;
+	y[3] = #25000 1'b1;
+	y[3] = #5000 1'b0;
+	y[3] = #5000 1'b1;
+	y[3] = #10000 1'b0;
+	y[3] = #15000 1'b1;
+	y[3] = #5000 1'b0;
+	y[3] = #15000 1'b1;
+	y[3] = #5000 1'b0;
+	y[3] = #10000 1'b1;
+	y[3] = #15000 1'b0;
+	y[3] = #15000 1'b1;
+	y[3] = #10000 1'b0;
+	y[3] = #5000 1'b1;
+	y[3] = #25000 1'b0;
+	y[3] = #15000 1'b1;
+	y[3] = #40000 1'b0;
+	y[3] = #5000 1'b1;
+	y[3] = #10000 1'b0;
+	y[3] = #5000 1'b1;
+	y[3] = #5000 1'b0;
+	y[3] = #20000 1'b1;
+	y[3] = #5000 1'b0;
+	y[3] = #20000 1'b1;
+	y[3] = #40000 1'b0;
+	y[3] = #5000 1'b1;
+	y[3] = #15000 1'b0;
+	y[3] = #40000 1'b1;
+	y[3] = #10000 1'b0;
+	y[3] = #5000 1'b1;
+	y[3] = #10000 1'b0;
+	y[3] = #5000 1'b1;
+	y[3] = #5000 1'b0;
+	y[3] = #5000 1'b1;
+	y[3] = #10000 1'b0;
+	y[3] = #20000 1'b1;
+	y[3] = #10000 1'b0;
+	y[3] = #5000 1'b1;
+	y[3] = #5000 1'b0;
+	y[3] = #10000 1'b1;
+	y[3] = #10000 1'b0;
+	y[3] = #5000 1'b1;
+	y[3] = #5000 1'b0;
+	y[3] = #5000 1'b1;
+	y[3] = #15000 1'b0;
+	y[3] = #5000 1'b1;
+	y[3] = #15000 1'b0;
+	y[3] = #5000 1'b1;
+	y[3] = #5000 1'b0;
+	y[3] = #15000 1'b1;
+	y[3] = #5000 1'b0;
+	y[3] = #15000 1'b1;
+	y[3] = #30000 1'b0;
+	y[3] = #10000 1'b1;
+	y[3] = #5000 1'b0;
+	y[3] = #5000 1'b1;
+	y[3] = #15000 1'b0;
+	y[3] = #5000 1'b1;
+	y[3] = #10000 1'b0;
+	y[3] = #25000 1'b1;
+	y[3] = #5000 1'b0;
+	y[3] = #5000 1'b1;
+	y[3] = #5000 1'b0;
+	y[3] = #5000 1'b1;
+	y[3] = #10000 1'b0;
+	y[3] = #5000 1'b1;
+	y[3] = #15000 1'b0;
+	y[3] = #10000 1'b1;
+	y[3] = #10000 1'b0;
+	y[3] = #10000 1'b1;
+	y[3] = #25000 1'b0;
+	y[3] = #5000 1'b1;
+	y[3] = #5000 1'b0;
+	y[3] = #5000 1'b1;
+	y[3] = #5000 1'b0;
+	y[3] = #10000 1'b1;
+	y[3] = #10000 1'b0;
+	y[3] = #5000 1'b1;
+	y[3] = #5000 1'b0;
+	y[3] = #10000 1'b1;
+	y[3] = #20000 1'b0;
+	y[3] = #15000 1'b1;
+	y[3] = #5000 1'b0;
+	y[3] = #10000 1'b1;
+	y[3] = #10000 1'b0;
+	y[3] = #5000 1'b1;
+	y[3] = #5000 1'b0;
+	y[3] = #20000 1'b1;
+end 
+// y[ 2 ]
+initial
+begin
+	y[2] = 1'b1;
+	y[2] = #10000 1'b0;
+	y[2] = #5000 1'b1;
+	y[2] = #5000 1'b0;
+	y[2] = #5000 1'b1;
+	y[2] = #5000 1'b0;
+	y[2] = #5000 1'b1;
+	y[2] = #10000 1'b0;
+	y[2] = #15000 1'b1;
+	y[2] = #10000 1'b0;
+	y[2] = #15000 1'b1;
+	y[2] = #5000 1'b0;
+	y[2] = #5000 1'b1;
+	y[2] = #10000 1'b0;
+	y[2] = #5000 1'b1;
+	y[2] = #5000 1'b0;
+	y[2] = #10000 1'b1;
+	y[2] = #30000 1'b0;
+	y[2] = #5000 1'b1;
+	y[2] = #5000 1'b0;
+	y[2] = #5000 1'b1;
+	y[2] = #5000 1'b0;
+	y[2] = #5000 1'b1;
+	y[2] = #15000 1'b0;
+	y[2] = #5000 1'b1;
+	y[2] = #5000 1'b0;
+	y[2] = #5000 1'b1;
+	y[2] = #5000 1'b0;
+	y[2] = #5000 1'b1;
+	y[2] = #5000 1'b0;
+	y[2] = #15000 1'b1;
+	y[2] = #5000 1'b0;
+	y[2] = #5000 1'b1;
+	y[2] = #10000 1'b0;
+	y[2] = #5000 1'b1;
+	y[2] = #5000 1'b0;
+	y[2] = #10000 1'b1;
+	y[2] = #15000 1'b0;
+	y[2] = #5000 1'b1;
+	y[2] = #20000 1'b0;
+	y[2] = #10000 1'b1;
+	y[2] = #10000 1'b0;
+	y[2] = #5000 1'b1;
+	y[2] = #5000 1'b0;
+	y[2] = #10000 1'b1;
+	y[2] = #15000 1'b0;
+	y[2] = #5000 1'b1;
+	y[2] = #5000 1'b0;
+	y[2] = #10000 1'b1;
+	y[2] = #10000 1'b0;
+	y[2] = #5000 1'b1;
+	y[2] = #5000 1'b0;
+	y[2] = #10000 1'b1;
+	y[2] = #15000 1'b0;
+	y[2] = #5000 1'b1;
+	y[2] = #5000 1'b0;
+	y[2] = #15000 1'b1;
+	y[2] = #5000 1'b0;
+	y[2] = #5000 1'b1;
+	y[2] = #5000 1'b0;
+	y[2] = #20000 1'b1;
+	y[2] = #20000 1'b0;
+	y[2] = #15000 1'b1;
+	y[2] = #15000 1'b0;
+	y[2] = #10000 1'b1;
+	y[2] = #10000 1'b0;
+	y[2] = #10000 1'b1;
+	y[2] = #5000 1'b0;
+	y[2] = #5000 1'b1;
+	y[2] = #10000 1'b0;
+	y[2] = #5000 1'b1;
+	y[2] = #15000 1'b0;
+	y[2] = #10000 1'b1;
+	y[2] = #5000 1'b0;
+	y[2] = #10000 1'b1;
+	y[2] = #10000 1'b0;
+	y[2] = #20000 1'b1;
+	y[2] = #5000 1'b0;
+	y[2] = #30000 1'b1;
+	y[2] = #15000 1'b0;
+	y[2] = #5000 1'b1;
+	y[2] = #10000 1'b0;
+	y[2] = #5000 1'b1;
+	y[2] = #5000 1'b0;
+	y[2] = #10000 1'b1;
+	y[2] = #5000 1'b0;
+	y[2] = #5000 1'b1;
+	y[2] = #10000 1'b0;
+	y[2] = #5000 1'b1;
+	y[2] = #20000 1'b0;
+	y[2] = #5000 1'b1;
+	y[2] = #5000 1'b0;
+	y[2] = #15000 1'b1;
+	y[2] = #15000 1'b0;
+	y[2] = #5000 1'b1;
+	y[2] = #10000 1'b0;
+	y[2] = #5000 1'b1;
+	y[2] = #5000 1'b0;
+	y[2] = #20000 1'b1;
+	y[2] = #10000 1'b0;
+	y[2] = #5000 1'b1;
+	y[2] = #20000 1'b0;
+	y[2] = #5000 1'b1;
+	y[2] = #5000 1'b0;
+	y[2] = #25000 1'b1;
+	y[2] = #5000 1'b0;
+	y[2] = #5000 1'b1;
+	y[2] = #15000 1'b0;
+end 
+// y[ 1 ]
+initial
+begin
+	y[1] = 1'b1;
+	y[1] = #15000 1'b0;
+	y[1] = #5000 1'b1;
+	y[1] = #10000 1'b0;
+	y[1] = #5000 1'b1;
+	y[1] = #5000 1'b0;
+	y[1] = #30000 1'b1;
+	y[1] = #15000 1'b0;
+	y[1] = #5000 1'b1;
+	y[1] = #5000 1'b0;
+	y[1] = #20000 1'b1;
+	y[1] = #5000 1'b0;
+	y[1] = #5000 1'b1;
+	y[1] = #5000 1'b0;
+	y[1] = #20000 1'b1;
+	y[1] = #5000 1'b0;
+	y[1] = #25000 1'b1;
+	y[1] = #15000 1'b0;
+	y[1] = #5000 1'b1;
+	y[1] = #15000 1'b0;
+	y[1] = #25000 1'b1;
+	y[1] = #5000 1'b0;
+	y[1] = #5000 1'b1;
+	y[1] = #20000 1'b0;
+	y[1] = #10000 1'b1;
+	y[1] = #5000 1'b0;
+	y[1] = #10000 1'b1;
+	y[1] = #15000 1'b0;
+	y[1] = #10000 1'b1;
+	y[1] = #5000 1'b0;
+	y[1] = #15000 1'b1;
+	y[1] = #5000 1'b0;
+	y[1] = #5000 1'b1;
+	y[1] = #10000 1'b0;
+	y[1] = #10000 1'b1;
+	y[1] = #15000 1'b0;
+	y[1] = #10000 1'b1;
+	y[1] = #10000 1'b0;
+	y[1] = #15000 1'b1;
+	y[1] = #5000 1'b0;
+	y[1] = #5000 1'b1;
+	y[1] = #5000 1'b0;
+	y[1] = #15000 1'b1;
+	y[1] = #10000 1'b0;
+	y[1] = #20000 1'b1;
+	y[1] = #15000 1'b0;
+	y[1] = #10000 1'b1;
+	y[1] = #10000 1'b0;
+	y[1] = #5000 1'b1;
+	y[1] = #5000 1'b0;
+	y[1] = #40000 1'b1;
+	y[1] = #25000 1'b0;
+	y[1] = #5000 1'b1;
+	y[1] = #10000 1'b0;
+	y[1] = #5000 1'b1;
+	y[1] = #10000 1'b0;
+	y[1] = #35000 1'b1;
+	y[1] = #5000 1'b0;
+	y[1] = #30000 1'b1;
+	y[1] = #30000 1'b0;
+	y[1] = #15000 1'b1;
+	y[1] = #20000 1'b0;
+	y[1] = #10000 1'b1;
+	y[1] = #20000 1'b0;
+	y[1] = #30000 1'b1;
+	y[1] = #10000 1'b0;
+	y[1] = #5000 1'b1;
+	y[1] = #10000 1'b0;
+	y[1] = #5000 1'b1;
+	y[1] = #5000 1'b0;
+	y[1] = #5000 1'b1;
+	y[1] = #5000 1'b0;
+	y[1] = #5000 1'b1;
+	y[1] = #5000 1'b0;
+	y[1] = #10000 1'b1;
+	y[1] = #10000 1'b0;
+	y[1] = #5000 1'b1;
+	y[1] = #15000 1'b0;
+	y[1] = #30000 1'b1;
+	y[1] = #5000 1'b0;
+	y[1] = #5000 1'b1;
+	y[1] = #5000 1'b0;
+	y[1] = #25000 1'b1;
+	y[1] = #10000 1'b0;
+end 
+// y[ 0 ]
+initial
+begin
+	y[0] = 1'b0;
+	y[0] = #5000 1'b1;
+	y[0] = #5000 1'b0;
+	y[0] = #5000 1'b1;
+	y[0] = #5000 1'b0;
+	y[0] = #15000 1'b1;
+	y[0] = #5000 1'b0;
+	y[0] = #15000 1'b1;
+	y[0] = #5000 1'b0;
+	y[0] = #10000 1'b1;
+	y[0] = #10000 1'b0;
+	y[0] = #10000 1'b1;
+	y[0] = #5000 1'b0;
+	y[0] = #5000 1'b1;
+	y[0] = #10000 1'b0;
+	y[0] = #5000 1'b1;
+	y[0] = #5000 1'b0;
+	y[0] = #5000 1'b1;
+	y[0] = #5000 1'b0;
+	y[0] = #10000 1'b1;
+	y[0] = #15000 1'b0;
+	y[0] = #10000 1'b1;
+	y[0] = #5000 1'b0;
+	y[0] = #5000 1'b1;
+	y[0] = #30000 1'b0;
+	y[0] = #10000 1'b1;
+	y[0] = #5000 1'b0;
+	y[0] = #5000 1'b1;
+	y[0] = #10000 1'b0;
+	y[0] = #20000 1'b1;
+	y[0] = #5000 1'b0;
+	y[0] = #5000 1'b1;
+	y[0] = #15000 1'b0;
+	y[0] = #15000 1'b1;
+	y[0] = #5000 1'b0;
+	y[0] = #5000 1'b1;
+	y[0] = #5000 1'b0;
+	y[0] = #5000 1'b1;
+	y[0] = #5000 1'b0;
+	y[0] = #15000 1'b1;
+	y[0] = #20000 1'b0;
+	y[0] = #5000 1'b1;
+	y[0] = #20000 1'b0;
+	y[0] = #10000 1'b1;
+	y[0] = #5000 1'b0;
+	y[0] = #10000 1'b1;
+	y[0] = #40000 1'b0;
+	y[0] = #5000 1'b1;
+	y[0] = #10000 1'b0;
+	y[0] = #10000 1'b1;
+	y[0] = #10000 1'b0;
+	y[0] = #5000 1'b1;
+	y[0] = #10000 1'b0;
+	y[0] = #5000 1'b1;
+	y[0] = #5000 1'b0;
+	y[0] = #5000 1'b1;
+	y[0] = #10000 1'b0;
+	y[0] = #15000 1'b1;
+	y[0] = #5000 1'b0;
+	y[0] = #25000 1'b1;
+	y[0] = #25000 1'b0;
+	y[0] = #10000 1'b1;
+	y[0] = #5000 1'b0;
+	y[0] = #15000 1'b1;
+	y[0] = #5000 1'b0;
+	y[0] = #10000 1'b1;
+	y[0] = #5000 1'b0;
+	y[0] = #5000 1'b1;
+	y[0] = #5000 1'b0;
+	y[0] = #5000 1'b1;
+	y[0] = #5000 1'b0;
+	y[0] = #15000 1'b1;
+	y[0] = #5000 1'b0;
+	y[0] = #10000 1'b1;
+	y[0] = #5000 1'b0;
+	y[0] = #15000 1'b1;
+	y[0] = #35000 1'b0;
+	y[0] = #5000 1'b1;
+	y[0] = #5000 1'b0;
+	y[0] = #10000 1'b1;
+	y[0] = #5000 1'b0;
+	y[0] = #10000 1'b1;
+	y[0] = #10000 1'b0;
+	y[0] = #10000 1'b1;
+	y[0] = #5000 1'b0;
+	y[0] = #5000 1'b1;
+	y[0] = #5000 1'b0;
+	y[0] = #5000 1'b1;
+	y[0] = #5000 1'b0;
+	y[0] = #25000 1'b1;
+	y[0] = #20000 1'b0;
+	y[0] = #5000 1'b1;
+	y[0] = #5000 1'b0;
+	y[0] = #25000 1'b1;
+	y[0] = #10000 1'b0;
+	y[0] = #5000 1'b1;
+	y[0] = #15000 1'b0;
+	y[0] = #30000 1'b1;
+	y[0] = #5000 1'b0;
+end 
+
+subtracao_vlg_sample_tst tb_sample (
+	.Bi(Bi),
+	.x(x),
+	.y(y),
+	.sampler_tx(sampler)
+);
+
+subtracao_vlg_check_tst tb_out(
+	.Bo(Bo),
+	.Dif(Dif),
+	.sampler_rx(sampler)
+);
+endmodule
+

@@ -1,0 +1,364 @@
+|calculadora
+x1[0] => soma:SO.A[0]
+x1[0] => subtracao:SB.x[0]
+x1[0] => inverte:IV.x[0]
+x1[0] => maior:MA.A[0]
+x1[0] => menor:ME.A[0]
+x1[1] => soma:SO.A[1]
+x1[1] => subtracao:SB.x[1]
+x1[1] => inverte:IV.x[1]
+x1[1] => maior:MA.A[1]
+x1[1] => menor:ME.A[1]
+x1[2] => soma:SO.A[2]
+x1[2] => subtracao:SB.x[2]
+x1[2] => inverte:IV.x[2]
+x1[2] => maior:MA.A[2]
+x1[2] => menor:ME.A[2]
+x1[3] => soma:SO.A[3]
+x1[3] => subtracao:SB.x[3]
+x1[3] => inverte:IV.x[3]
+x1[3] => maior:MA.A[3]
+x1[3] => menor:ME.A[3]
+x2[0] => soma:SO.B[0]
+x2[0] => subtracao:SB.y[0]
+x2[0] => maior:MA.B[0]
+x2[0] => menor:ME.B[0]
+x2[1] => soma:SO.B[1]
+x2[1] => subtracao:SB.y[1]
+x2[1] => maior:MA.B[1]
+x2[1] => menor:ME.B[1]
+x2[2] => soma:SO.B[2]
+x2[2] => subtracao:SB.y[2]
+x2[2] => maior:MA.B[2]
+x2[2] => menor:ME.B[2]
+x2[3] => soma:SO.B[3]
+x2[3] => subtracao:SB.y[3]
+x2[3] => maior:MA.B[3]
+x2[3] => menor:ME.B[3]
+s2 => multiplexador:MTP.s2
+s1 => multiplexador:MTP.s1
+s0 => multiplexador:MTP.s0
+LD => multiplexador:MTP.LD
+C_out <= multiplexador:MTP.C_out
+display[0] <= conversorDisplay:CVR.display[0]
+display[1] <= conversorDisplay:CVR.display[1]
+display[2] <= conversorDisplay:CVR.display[2]
+display[3] <= conversorDisplay:CVR.display[3]
+display[4] <= conversorDisplay:CVR.display[4]
+display[5] <= conversorDisplay:CVR.display[5]
+display[6] <= conversorDisplay:CVR.display[6]
+
+
+|calculadora|soma:SO
+A[0] => somador:S0.A
+A[1] => somador:S1.A
+A[2] => somador:S2.A
+A[3] => somador:S3.A
+B[0] => somador:S0.B
+B[1] => somador:S1.B
+B[2] => somador:S2.B
+B[3] => somador:S3.B
+Ci => ~NO_FANOUT~
+Co <= somador:S3.Co
+saida[0] <= somador:S0.S
+saida[1] <= somador:S1.S
+saida[2] <= somador:S2.S
+saida[3] <= somador:S3.S
+
+
+|calculadora|soma:SO|somador:S0
+Ci => S.IN1
+Ci => Co.IN1
+Ci => Co.IN1
+A => S.IN0
+A => Co.IN0
+A => Co.IN0
+B => S.IN1
+B => Co.IN1
+B => Co.IN1
+Co <= Co.DB_MAX_OUTPUT_PORT_TYPE
+S <= S.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|calculadora|soma:SO|somador:S1
+Ci => S.IN1
+Ci => Co.IN1
+Ci => Co.IN1
+A => S.IN0
+A => Co.IN0
+A => Co.IN0
+B => S.IN1
+B => Co.IN1
+B => Co.IN1
+Co <= Co.DB_MAX_OUTPUT_PORT_TYPE
+S <= S.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|calculadora|soma:SO|somador:S2
+Ci => S.IN1
+Ci => Co.IN1
+Ci => Co.IN1
+A => S.IN0
+A => Co.IN0
+A => Co.IN0
+B => S.IN1
+B => Co.IN1
+B => Co.IN1
+Co <= Co.DB_MAX_OUTPUT_PORT_TYPE
+S <= S.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|calculadora|soma:SO|somador:S3
+Ci => S.IN1
+Ci => Co.IN1
+Ci => Co.IN1
+A => S.IN0
+A => Co.IN0
+A => Co.IN0
+B => S.IN1
+B => Co.IN1
+B => Co.IN1
+Co <= Co.DB_MAX_OUTPUT_PORT_TYPE
+S <= S.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|calculadora|subtracao:SB
+x[0] => diferenca:SUB0.x
+x[1] => diferenca:SUB1.x
+x[2] => diferenca:SUB2.x
+x[3] => diferenca:SUB3.x
+y[0] => diferenca:SUB0.y
+y[1] => diferenca:SUB1.y
+y[2] => diferenca:SUB2.y
+y[3] => diferenca:SUB3.y
+Bi => ~NO_FANOUT~
+Bo <= diferenca:SUB3.Bo
+Dif[0] <= diferenca:SUB0.Dif
+Dif[1] <= diferenca:SUB1.Dif
+Dif[2] <= diferenca:SUB2.Dif
+Dif[3] <= diferenca:SUB3.Dif
+
+
+|calculadora|subtracao:SB|diferenca:SUB0
+x => Dif.IN0
+x => Bo.IN0
+x => Bo.IN0
+y => Dif.IN1
+y => Bo.IN1
+y => Bo.IN1
+Bi => Dif.IN1
+Bi => Bo.IN1
+Bo <= Bo.DB_MAX_OUTPUT_PORT_TYPE
+Dif <= Dif.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|calculadora|subtracao:SB|diferenca:SUB1
+x => Dif.IN0
+x => Bo.IN0
+x => Bo.IN0
+y => Dif.IN1
+y => Bo.IN1
+y => Bo.IN1
+Bi => Dif.IN1
+Bi => Bo.IN1
+Bo <= Bo.DB_MAX_OUTPUT_PORT_TYPE
+Dif <= Dif.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|calculadora|subtracao:SB|diferenca:SUB2
+x => Dif.IN0
+x => Bo.IN0
+x => Bo.IN0
+y => Dif.IN1
+y => Bo.IN1
+y => Bo.IN1
+Bi => Dif.IN1
+Bi => Bo.IN1
+Bo <= Bo.DB_MAX_OUTPUT_PORT_TYPE
+Dif <= Dif.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|calculadora|subtracao:SB|diferenca:SUB3
+x => Dif.IN0
+x => Bo.IN0
+x => Bo.IN0
+y => Dif.IN1
+y => Bo.IN1
+y => Bo.IN1
+Bi => Dif.IN1
+Bi => Bo.IN1
+Bo <= Bo.DB_MAX_OUTPUT_PORT_TYPE
+Dif <= Dif.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|calculadora|inverte:IV
+x[0] => inversor:S0.x
+x[1] => inversor:S1.x
+x[2] => inversor:S2.x
+x[3] => inversor:S3.x
+s[0] <= inversor:S0.s
+s[1] <= inversor:S1.s
+s[2] <= inversor:S2.s
+s[3] <= inversor:S3.s
+
+
+|calculadora|inverte:IV|inversor:S0
+x => s.DATAIN
+s <= x.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|calculadora|inverte:IV|inversor:S1
+x => s.DATAIN
+s <= x.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|calculadora|inverte:IV|inversor:S2
+x => s.DATAIN
+s <= x.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|calculadora|inverte:IV|inversor:S3
+x => s.DATAIN
+s <= x.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|calculadora|maior:MA
+A[0] => S.IN0
+A[1] => S.IN0
+A[1] => S.IN0
+A[2] => S.IN1
+A[2] => S.IN0
+A[3] => S.IN0
+A[3] => S.IN0
+B[0] => S.IN1
+B[1] => S.IN1
+B[1] => S.IN1
+B[2] => S.IN1
+B[2] => S.IN1
+B[3] => S.IN1
+B[3] => S.IN1
+S <= S.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|calculadora|menor:ME
+A[0] => maior:ME.B[0]
+A[1] => maior:ME.B[1]
+A[2] => maior:ME.B[2]
+A[3] => maior:ME.B[3]
+B[0] => maior:ME.A[0]
+B[1] => maior:ME.A[1]
+B[2] => maior:ME.A[2]
+B[3] => maior:ME.A[3]
+S <= maior:ME.S
+
+
+|calculadora|menor:ME|maior:ME
+A[0] => S.IN0
+A[1] => S.IN0
+A[1] => S.IN0
+A[2] => S.IN1
+A[2] => S.IN0
+A[3] => S.IN0
+A[3] => S.IN0
+B[0] => S.IN1
+B[1] => S.IN1
+B[1] => S.IN1
+B[2] => S.IN1
+B[2] => S.IN1
+B[3] => S.IN1
+B[3] => S.IN1
+S <= S.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|calculadora|multiplexador:MTP
+A[0] => Y.IN1
+A[1] => Y.IN1
+A[2] => Y.IN1
+A[3] => Y.IN1
+B[0] => Y.IN1
+B[1] => Y.IN1
+B[2] => Y.IN1
+B[3] => Y.IN1
+C => C_out.IN1
+D => C_out.IN1
+E[0] => Y.IN1
+E[1] => Y.IN1
+E[2] => Y.IN1
+E[3] => Y.IN1
+CS => C_out.IN1
+BS => C_out.IN1
+BS => CTRL.IN1
+LD => Y.IN1
+LD => Y.IN1
+LD => Y.IN1
+LD => C_out.IN1
+LD => C_out.IN1
+LD => CTRL.IN1
+s0 => Y.IN0
+s0 => Y.IN0
+s0 => CTRL.IN1
+s0 => Y.IN0
+s0 => CTRL.IN0
+s1 => Y.IN1
+s1 => CTRL.IN0
+s1 => CTRL.IN1
+s1 => Y.IN1
+s1 => Y.IN1
+s1 => CTRL.IN0
+s2 => Y.IN1
+s2 => CTRL.IN1
+s2 => CTRL.IN1
+s2 => CTRL.IN1
+s2 => Y.IN1
+s2 => Y.IN1
+s2 => CTRL.IN1
+s2 => CTRL.IN1
+Y[0] <= Y.DB_MAX_OUTPUT_PORT_TYPE
+Y[1] <= Y.DB_MAX_OUTPUT_PORT_TYPE
+Y[2] <= Y.DB_MAX_OUTPUT_PORT_TYPE
+Y[3] <= Y.DB_MAX_OUTPUT_PORT_TYPE
+CTRL[0] <= CTRL.DB_MAX_OUTPUT_PORT_TYPE
+CTRL[1] <= CTRL.DB_MAX_OUTPUT_PORT_TYPE
+C_out <= C_out.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|calculadora|conversorDisplay:CVR
+I[0] => Mux0.IN19
+I[0] => Mux1.IN19
+I[0] => Mux2.IN19
+I[0] => Mux3.IN19
+I[0] => Mux4.IN19
+I[0] => Mux5.IN19
+I[0] => Mux6.IN19
+I[1] => Mux0.IN18
+I[1] => Mux1.IN18
+I[1] => Mux2.IN18
+I[1] => Mux3.IN18
+I[1] => Mux4.IN18
+I[1] => Mux5.IN18
+I[1] => Mux6.IN18
+I[2] => Mux0.IN17
+I[2] => Mux1.IN17
+I[2] => Mux2.IN17
+I[2] => Mux3.IN17
+I[2] => Mux4.IN17
+I[2] => Mux5.IN17
+I[2] => Mux6.IN17
+I[3] => Mux0.IN16
+I[3] => Mux1.IN16
+I[3] => Mux2.IN16
+I[3] => Mux3.IN16
+I[3] => Mux4.IN16
+I[3] => Mux5.IN16
+I[3] => Mux6.IN16
+CTRL[0] => Equal0.IN1
+CTRL[1] => Equal0.IN0
+display[0] <= display[0]$latch.DB_MAX_OUTPUT_PORT_TYPE
+display[1] <= display[1]$latch.DB_MAX_OUTPUT_PORT_TYPE
+display[2] <= display[2]$latch.DB_MAX_OUTPUT_PORT_TYPE
+display[3] <= display[3]$latch.DB_MAX_OUTPUT_PORT_TYPE
+display[4] <= display[4]$latch.DB_MAX_OUTPUT_PORT_TYPE
+display[5] <= display[5]$latch.DB_MAX_OUTPUT_PORT_TYPE
+display[6] <= display[6]$latch.DB_MAX_OUTPUT_PORT_TYPE
+
+

@@ -1,0 +1,25 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity multiplexador is 
+port (
+			x0, x1, x2, x3, x4, x5, x6, x7 : in std_logic;
+			s0, s1, s2: in std_logic;
+			l : in std_logic;
+			d : out std_logic;
+		);
+end multiplexador;
+
+architecture archMultiplexador of miltplexador is
+signal d2: std_logic;
+begin
+		d2 <= ((x0 and not(s0) and not(s1) and not(s2))) or
+				((x1 and not(s0) and not(s1) and (s2))) or
+				((x2 and not(s0) and (s1) and not(s2))) or
+				((x3 and not(s0) and (s1) and (s2))) or
+				((x4 and (s0) and not(s1) and not(s2))) or
+				((x5 and (s0) and not(s1) and (s2))) or
+				((x6 and (s0) and (s1) and not(s2))) or
+				((x7 and (s0) and (s1) and (s2)));
+		d <= d2 and l;
+	end archMultiplexador;
